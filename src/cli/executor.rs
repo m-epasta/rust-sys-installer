@@ -16,9 +16,15 @@ pub fn execute_ubuntu() -> Result<(), ProcessError> {
     CommandBuilder::apt_install("git").execute()?;
     CommandBuilder::apt_install("npm").execute()?;
 
-    // Install node in the reccomended way
+    // Install node in the reccomended way with nvm
     install_nvm()?;
     install_nodejs_with_nvm()?;
+
+    // install rust, curl rust then load cargo to PATH
+    install_rust()?;
+
+    // Now, installs vscode
+    
 
     Ok(())
 }
@@ -43,6 +49,17 @@ pub fn install_nodejs_with_nvm() -> Result<(), ProcessError> {
     CommandBuilder::new("bash")
         .arg("-c")
         .arg(nvm_commands)
+        .execute()?;
+
+    Ok(())
+}
+
+pub fn install_rust() -> Result<(), ProcessError> {
+    let command = "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y";
+
+    CommandBuilder::new("bash")
+        .arg("-c")
+        .arg(command)
         .execute()?;
 
     Ok(())
