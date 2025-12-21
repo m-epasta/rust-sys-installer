@@ -71,10 +71,7 @@ pub fn install_rust() -> Result<(), ProcessError> {
 
 pub fn install_vscode() -> Result<(), ProcessError> {
     let setup_commands = r#"
-        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-        sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-        echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
-        rm packages.microsoft.gpg
+        sudo snap install code --classic
     "#;
 
     CommandBuilder::new("bash")
@@ -82,7 +79,6 @@ pub fn install_vscode() -> Result<(), ProcessError> {
         .arg(setup_commands)
         .execute()?;
 
-    CommandBuilder::apt_install("code").execute()?;
 
     Ok(())
 }
