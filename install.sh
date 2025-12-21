@@ -31,7 +31,7 @@ echo -e "${BLUE}========================================${NC}"
 
 # Check if binary exists
 BINARY_NAME="rust-sys-installer"
-BINARY_PATH="${SCRIPT_DIR}/target/release/${BINARY_NAME}"
+BINARY_PATH="${SCRIPT_DIR}/${BINARY_NAME}"
 
 if [ ! -f "$BINARY_PATH" ]; then
     echo -e "${RED}❌ Error: Rust binary not found at ${BINARY_PATH}${NC}"
