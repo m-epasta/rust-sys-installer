@@ -1,5 +1,5 @@
 use crate::prelude::*;
-use std::{collections::HashMap, path::PathBuf, time::Duration, process::Output};
+use std::{collections::HashMap, path::PathBuf, process::Output, time::Duration};
 
 pub struct CommandBuilder {
     program: String,
@@ -31,7 +31,8 @@ impl CommandBuilder {
     }
 
     pub fn env(mut self, key: &str, value: &str) -> Self {
-        self.env_vars.get_or_insert_with(HashMap::new)
+        self.env_vars
+            .get_or_insert_with(HashMap::new)
             .insert(key.to_string(), value.to_string());
         self
     }
@@ -65,7 +66,10 @@ impl CommandBuilder {
         if !output.status.success() {
             let error_msg = String::from_utf8_lossy(&output.stderr).to_string();
             let exit_code = output.status.code().unwrap_or(1) as u16;
-            return Err(ProcessError::ScriptingError { error_msg, exit_code });
+            return Err(ProcessError::ScriptingError {
+                error_msg,
+                exit_code,
+            });
         }
 
         Ok(output)
@@ -73,7 +77,58 @@ impl CommandBuilder {
 
     // OS-specific helpers
     pub fn apt_install(package: &str) -> Self {
-        Self::new("apt").args(vec!["install".to_string(), "-y".to_string(), package.to_string()])
+        Self::new("apt").args(vec![
+            "install".to_string(),
+            "-y".to_string(),
+            package.to_string(),
+        ])
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_command_builder_new() {
+        let cmd = CommandBuilder::new("ls");
+        assert_eq!(cmd.program, "ls");
+        assert!(cmd.args.is_empty());
+        assert!(cmd.env_vars.is_none());
+        assert!(cmd.working_dir.is_none());
+        assert!(cmd.timeout.is_none());
     }
 
+    #[test]
+    fn test_command_builder_with_args() {
+        let cmd = CommandBuilder::new("ls")
+            .arg("-la")
+            .args(vec!["/tmp".to_string(), "/var".to_string()]);
+
+        assert_eq!(cmd.program, "ls");
+        assert_eq!(cmd.args, vec!["-la", "/tmp", "/var"]);
+    }
+
+    #[test]
+    fn test_command_builder_with_env() {
+        let cmd = CommandBuilder::new("echo")
+            .env("HOME", "/tmp")
+            .env("USER", "test");
+
+        assert_eq!(
+            cmd.env_vars.as_ref().unwrap().get("HOME"),
+            Some(&"/tmp".to_string())
+        );
+        assert_eq!(
+            cmd.env_vars.as_ref().unwrap().get("USER"),
+            Some(&"test".to_string())
+        );
+    }
+
+    #[test]
+    fn test_ubuntu_apt_install() {
+        let cmd = CommandBuilder::apt_install("curl");
+        assert_eq!(cmd.program, "apt");
+        assert_eq!(cmd.args, vec!["install", "-y", "curl"]);
+    }
 }
