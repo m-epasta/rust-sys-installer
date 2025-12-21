@@ -6,4 +6,6 @@ pub enum ProcessError {
     ScriptingError { error_msg: String, exit_code: u16 },
     #[error("IO error: {0}")]
     Io(#[from] std::io::Error),
+    #[error("JSON parsing error: {0}")]
+    Json(#[from] serde_json::Error),
 }
