@@ -291,7 +291,7 @@ pub fn configure_vscode() -> Result<(), ProcessError> {
                 mkdir -p ~/.config/Code/User
                 cat > ~/.config/Code/User/settings.json << 'EOF'
 {}
-EOF
+'EOF'
             "
         "#, original_user, settings_json);
 
@@ -323,7 +323,7 @@ EOF
             mkdir -p ~/.config/Code/User
             cat > ~/.config/Code/User/settings.json << 'EOF'
 {}
-EOF
+'EOF'
         "#, settings_json);
 
         CommandBuilder::new("bash")
