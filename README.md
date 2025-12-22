@@ -1,172 +1,38 @@
-# Rust Development Environment Installer
+# PREAMBULE
 
-A comprehensive installer that sets up a complete Rust development environment on Ubuntu systems, including VS Code with essential extensions and all necessary tools.
+For now, this repo only supports ubuntu, other os will maybe be added later
 
-## 🚀 Features
+# INSTALLATION
 
-- **System Package Installation**: Installs essential build tools and development packages
-- **NVM & Node.js**: Installs Node Version Manager and Node.js for JavaScript development
-- **Rust Toolchain**: Installs the latest Rust compiler and Cargo package manager
-- **VS Code**: Installs Visual Studio Code with curated extensions for Rust development
-- **Progress Tracking**: Beautiful progress indicators throughout the installation
-- **Error Handling**: Comprehensive error handling and validation
+This script contains (in release): a bash script named install.sh and a binary file named rust-sys-installer: actual script that installs the packages.
 
-## 📋 Prerequisites
+All you have to do is to follow these simple steps:
+1. copy the release files into an USB drive or a cloud DRIVE that you can plug/access later in your computer (ubuntu in try mode)
 
-- **Ubuntu 22.04+** (other Debian-based systems may work but are not officially supported)
-- **Internet connection** for downloading packages and tools
-- **sudo access** for system package installation
+2. place the 2 release files into a folder 
 
-## 🛠️ Installation
+3. Plug your USB booter into your computer
 
-### Step 1: Clone or Download the Repository
+4. follow the instructions and stop at installation process (try mode)
+5. now copy your folder into /tmp you can do it by running this bash line in the terminal:
+<code>cp -r /media/your_os/your_usb_drive/your_folder</code> or, if your folder is in the cloud, connect to it with firefox(you can launch it with <code>firefox</code> into a terminal) and then copy it manualy to /tmp folder
 
-```bash
-git clone https://github.com/your-username/rust-sys-installer.git
-cd rust-sys-installer
-```
+6. cd into /tmp: run <code>cd /tmp</code>
 
-Or download and extract the ZIP file.
+7. make the install.sh file executable with this line: <code>chmod +x your_folder/install.sh</code>
 
-### Step 2: Build the Project
+8. finnaly, run the executable with **sudo privilege**: <code>sudo ./your_folder/install.sh</code>
 
-```bash
-# Install Rust if you haven't already
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source ~/.cargo/env
+# Script actions
 
-# Build the release version
-cargo build --release
-```
+The script first updates to latest compatible apt and apt-get packages manager to make sure the installation is going to work
 
-### Step 3: Run the Installer
+Then, it installs some system packages and dependencies useful/necessary to code in rust and also some to code in modern typescript(nodejs runtime).
 
-```bash
-./install.sh
-```
+It finally installs vscode via snap --classic and some extensions that I use for DX.
 
-**Note**: The installer script automatically handles its own executable permissions, so you don't need to manually run `chmod +x install.sh` first.
+# CONTRIBUTIONS & FUTURE
 
-**Note**: The installer requires sudo access for system package installation. You'll be prompted for your password when needed.
-
-## 📦 What Gets Installed
-
-### System Packages
-- `curl`, `git`, `wget`
-- `gpg`, `apt-transport-https`
-- Build tools and development libraries
-
-### Development Tools
-- **NVM (Node Version Manager)** - For managing Node.js versions
-- **Node.js** - Latest LTS version via NVM
-- **Rust** - Latest stable toolchain with Cargo
-
-### VS Code Extensions
-- **Rust Analyzer** - Language server for Rust
-- **Code Runner** - Run code snippets
-- **Prettier** - Code formatting
-- **GitLens** - Enhanced Git capabilities
-- **Error Lens** - Inline error display
-- **ES7 React/Redux Snippets** - JavaScript/React snippets
-- **GitHub Copilot** - AI-powered code assistance
-- And more...
-
-### VS Code Settings
-The installer configures VS Code with optimized settings for Rust development, including:
-- Format on save
-- Inline suggestions
-- Rust-specific analyzer settings
-- Custom code runner configurations
-
-## 🎯 Usage After Installation
-
-After successful installation, you'll have:
-
-1. **Rust toolchain** ready to use:
-   ```bash
-   cargo --version
-   rustc --version
-   ```
-
-2. **VS Code** with all extensions installed and configured
-
-3. **NVM and Node.js** for JavaScript development:
-   ```bash
-   node --version
-   npm --version
-   ```
-
-## 🔧 Troubleshooting
-
-### Permission Issues
-If you get permission errors:
-```bash
-# Make sure the script is executable
-chmod +x install.sh
-
-# Run with explicit bash if needed
-bash install.sh
-```
-
-### Build Failures
-If the build fails:
-```bash
-# Clean and rebuild
-cargo clean
-cargo build --release
-```
-
-### Installation Fails
-If the installer fails:
-- Check your internet connection
-- Ensure you have sudo privileges
-- Try running individual commands manually to isolate issues
-
-### VS Code Not Found
-If VS Code extensions fail to install:
-- Make sure VS Code is properly installed: `code --version`
-- Try installing extensions manually: `code --install-extension rust-lang.rust-analyzer`
-
-## 🏗️ Development
-
-To modify the installer:
-
-```bash
-# Development build
-cargo build
-
-# Run tests
-cargo test
-
-# Check code quality
-cargo clippy
-```
-
-## 📄 License
-
-This project is open source. See LICENSE file for details.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-If you encounter issues:
-
-1. Check the troubleshooting section above
-2. Review the installation logs for error messages
-3. Create an issue on GitHub with:
-   - Your Ubuntu version: `lsb_release -a`
-   - Error messages
-   - Steps to reproduce
-
----
-
-**Happy coding with Rust! 🦀**
+The app is for now, designed for a specific need that I found, so every thing is designed for my needs. The app may add generi help or better interaction like customizing the settings.json and extensions.json configs files etc ...
+So if you find this idea useful with a potential, contact me on discord: @psykokwak6049 or just do an issue/pull request on the repository.
+I do not plan for now to continue this repo because my need is fullfill, stil open to contributions/propositions.

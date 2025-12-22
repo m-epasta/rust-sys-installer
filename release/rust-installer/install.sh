@@ -29,6 +29,15 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo -e "${GREEN}🚀 Rust Development Environment Installer${NC}"
 echo -e "${BLUE}========================================${NC}"
 
+# First, update apt and apt-get to make sure everything is supported on @latest
+sudo apt update
+echo -e "${GREEN} Package manager apt updated to latest (according to current os version)${NC}"
+
+sudo apt-get update
+echo -e "${GREEN}apt-get succesfully updated${NC}"
+
+echo -e "${GREEN}INSTALLATION READY TO PROCEED${NC}"
+
 # Check if binary exists
 BINARY_NAME="rust-sys-installer"
 BINARY_PATH="${SCRIPT_DIR}/${BINARY_NAME}"
