@@ -4,12 +4,34 @@ For now, this repo only supports ubuntu, other os will maybe be added later
 
 # INSTALLATION
 
+## Option 1: .deb Package (Recommended - Simplest)
+
+Download the latest `.deb` file from the [releases page](https://github.com/m-epasta/rust-sys-installer/releases) and install it:
+
+```bash
+sudo dpkg -i rust-sys-installer_*.deb
+```
+
+The package will automatically install all dependencies and configure your development environment.
+
+## Option 2: Manual Installation (for Live USB / Try Mode)
+
+### Option 2a: Using .deb Package (Simplest for Try Mode)
+
+1. Download the `.deb` file from the [releases page](https://github.com/m-epasta/rust-sys-installer/releases)
+2. Copy the `.deb` file to your USB drive or cloud storage
+3. Boot into Ubuntu try mode
+4. Copy the `.deb` file to `/tmp`: `cp /media/your_os/your_usb_drive/rust-sys-installer_0.1.0_amd64.deb /tmp/`
+5. Install with: `sudo dpkg -i /tmp/rust-sys-installer_0.1.0_amd64.deb`
+
+### Option 2b: Using Script and Binary (Original Method)
+
 This script contains (in release): a bash script named install.sh and a binary file named rust-sys-installer: actual script that installs the packages.
 
 All you have to do is to follow these simple steps:
 1. copy the release files into an USB drive or a cloud DRIVE that you can plug/access later in your computer (ubuntu in try mode)
 
-2. place the 2 release files into a folder 
+2. place the 2 release files into a folder
 
 3. Plug your USB booter into your computer
 
