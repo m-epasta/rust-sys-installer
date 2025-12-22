@@ -1,6 +1,6 @@
 # PREAMBULE
 
-For now, this repo only supports ubuntu, other os will maybe be added later
+For now, this repo only supports ubuntu, others os will maybe be added later
 
 # INSTALLATION
 
@@ -26,7 +26,7 @@ The package will automatically install all dependencies and configure your devel
 
 ### Option 2b: Using Script and Binary (Original Method)
 
-This script contains (in release): a bash script named install.sh and a binary file named rust-sys-installer: actual script that installs the packages.
+This script contains (in release): a bash script named <code>install.sh</code> and a binary file named <code>rust-sys-installer</code>: actual script that installs the packages.
 
 All you have to do is to follow these simple steps:
 1. copy the release files into an USB drive or a cloud DRIVE that you can plug/access later in your computer (ubuntu in try mode)
@@ -57,4 +57,4 @@ It finally installs vscode via snap --classic and some extensions that I use for
 
 The app is for now, designed for a specific need that I found, so every thing is designed for my needs. The app may add generi help or better interaction like customizing the settings.json and extensions.json configs files etc ...
 So if you find this idea useful with a potential, contact me on discord: @psykokwak6049 or just do an issue/pull request on the repository.
-I do not plan for now to continue this repo because my need is fullfill, stil open to contributions/propositions.
+I do not plan for now to continue this repo because my need is fullfilled, stil open to contributions/propositions.
