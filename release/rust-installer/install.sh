@@ -29,10 +29,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo -e "${GREEN}🚀 Rust Development Environment Installer${NC}"
 echo -e "${BLUE}========================================${NC}"
 
-# First, update apt and apt-get to make sure everything is supported on @latest
-sudo apt update
-echo -e "${GREEN} Package manager apt updated to latest (according to current os version)${NC}"
-
+# Update apt-get for accessing latest versions of the packages
 sudo apt-get update
 echo -e "${GREEN}apt-get succesfully updated${NC}"
 
